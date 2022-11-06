@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Area</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Editar Area</h1>
+    </center>
+    <form action="/EditarP_Area/{{AreaDato.0}}" method="POST">
+        <div class="mb-3">
+            <label for="nombreArea" class="form-label">Nombre del Area:</label>
+            <input type="text" class="form-control" id="nombreArea" name="nombreArea" value="{{AreaDato.1}}">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Actualizar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

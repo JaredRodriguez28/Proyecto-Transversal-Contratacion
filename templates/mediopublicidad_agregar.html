@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Medio de Publicidad</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Medio de Publicidad Nuevo</h1>
+    </center>
+    <form action="/AgregarP_MedioPublicidad" method="POST">
+        <div class="mb-3">
+            <label for="MedioPublicidad" class="form-label">Medio de Publicidad:</label>
+            <input type="text" class="form-control" id="MedioPublicidad" name="MedioPublicidad" placeholder="Ejemplo: Convocatoria">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Agregar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

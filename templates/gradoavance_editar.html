@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Grado de Avance</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Grado de Avance</h1>
+    </center>
+    <form action="/EditarP_GradoAvance/{{GradoAvanceDato.0}}" method="POST">
+        <div class="mb-3">
+            <label for="nombreGradoAvance" class="form-label">Nombre del Grado de Avance:</label>
+            <input type="text" class="form-control" id="nombreGradoAvance" name="nombreGradoAvance" value="{{GradoAvanceDato.1}}">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Actualizar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

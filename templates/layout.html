@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{url_for('static', filename='imagenes/RH.png')}}" alt="RH" width="30" height="30"
+                    class="d-inline-block align-text-top">
+                RH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Contratación
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Vacante</a></li>
+                            <li><a class="dropdown-item" href="/Puesto">Puesto</a></li>
+                            <li class="dropdown-submenu">
+                                <a class="test dropdown-item" href="#">Requisicion &raquo;</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/Agregar_Requisicion">Nueva Requisicion</a></li>
+                                    <li><a class="dropdown-item" href="/Requisiciones_Pendientes">Pendientes de Autorizacion</a></li>
+                                    <li><a class="dropdown-item" href="/Requisiciones_Autorizadas">Autorizadas</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Candidatos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Catálogos
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/Area">Area</a></li>
+                            <li><a class="dropdown-item" href="/Carrera">Carrera</a></li>
+                            <li><a class="dropdown-item" href="/Escolaridad">Escolaridad</a></li>
+                            <li><a class="dropdown-item" href="/EstadoCivil">Estado Civil</a></li>
+                            <li><a class="dropdown-item" href="/GradoAvance">Grado de Avance</a></li>
+                            <li><a class="dropdown-item" href="/Habilidades">Habilidades</a></li>
+                            <li><a class="dropdown-item" href="/Idioma">Idioma</a></li>
+                            <li><a class="dropdown-item" href="/MedioPublicidad">Medio de Publicidad</a></li>
+                            <li><a class="dropdown-item" href="/DocumentosSolicitados">Documentos Solicitados</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-submenu a.test').on("click", function (e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+</html>

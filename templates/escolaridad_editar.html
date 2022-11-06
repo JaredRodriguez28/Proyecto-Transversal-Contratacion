@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Escolaridad</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Editar Escolaridad</h1>
+    </center>
+    <form action="/EditarP_Escolaridad/{{EscolaridadDato.0}}" method="POST">
+        <div class="mb-3">
+            <label for="nombreEscolaridad" class="form-label">Nombre de la Escolaridad:</label>
+            <input type="text" class="form-control" id="nombreEscolaridad" name="nombreEscolaridad" value="{{EscolaridadDato.1}}">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Actualizar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

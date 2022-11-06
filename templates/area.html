@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Area</title>
+    <link rel="stylesheet" href="/static/css/cssCatalogos.css">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Area</h1>
+    </center>
+    <table class="table table-responsive table-info table-bordered border-dark text-center">
+        <thead class="table-dark">
+            <tr class="table-bordered border-light">
+                <th scope="col-8" width="75%">Descripcion</th>
+                <th colspan="2" scope="col" width="25%"><a href="/Agregar_Area" class="text-decoration-none">
+                        <img src="{{url_for('static', filename='imagenes/agregar.png')}}" alt="NUEVO" width="20"
+                            height="20">
+                        Nuevo
+                    </a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in AreaDatos %}
+            <tr>
+                <th scope="col">{{ i.1 }}</th>
+                <th><a href="/Editar_Area/{{i.0}}" class="text-decoration-none">Editar</a></th>
+                <th><a href="/Borrar_Area/{{i.0}}" class="text-decoration-none">Borrar</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}
+
+</body>

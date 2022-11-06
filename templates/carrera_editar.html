@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Carrera</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Editar Carrera</h1>
+    </center>
+    <form action="/EditarP_Carrera/{{CarreraDato.0}}" method="POST">
+        <div class="mb-3">
+            <label for="nombreCarrera" class="form-label">Nombre de la Carrera:</label>
+            <input type="text" class="form-control" id="nombreCarrera" name="nombreCarrera" value="{{CarreraDato.1}}">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Actualizar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

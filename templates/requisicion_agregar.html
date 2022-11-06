@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Requisicion</title>
+    <link rel="stylesheet" href="/static/css/cssAgregarRequisicion.css">
+</head>
+
+<body>
+    <br>
+    <center>
+        <h1>Solicitud de Requisicion de Personal</h1>
+    </center>
+
+    <br>
+
+    <form class="row g-3 mb-3" action="/AgregarP_Requisicion" method="POST">
+        <div class="col-md-3">
+            <label class="form-label">Folio:
+                <input type="text" class="form-control" id="Folio" name="Folio" required>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Area que Solicita:
+                <select class="form-select" name="idArea" id="idArea" required>
+                    <option selected hidden>Areas</option>
+                    {% for j in AreaDatos %}
+                    <option value="{{j.0}}">{{j.1}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha de Elaboracion:
+                <input type="date" class="form-control" id="FechaElaboracion" name="FechaElaboracion" required>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Puesto a Cubrir:</label>
+            <select class="form-select" name="idPuesto" id="idPuesto" required>
+                <option selected hidden>Puestos</option>
+                {% for j in PuestoDatos %}
+                <option value="{{j.0}}">{{j.2}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Nombre Y Puesto De Quien Lo Solicita:
+                <input type="text" class="form-control" id="Solicitante" name="Solicitante" required>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Fecha De Reclutamiento:
+                <input type="date" class="form-control" id="FechaReclutamiento" name="FechaReclutamiento" required>
+            </label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Fecha De Inicio Vacante:
+                <input type="date" class="form-control" id="FechaInicioVacante" name="FechaInicioVacante" required>
+            </label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Tipo De Vacante:
+                <select class="form-select" name="TipoVacante" id="TipoVacante" required>
+                    <option selected hidden>Vacantes</option>
+                    <option value="Temporal">Temporal</option>
+                    <option value="Definitiva">Definitiva</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <strong><label class="form-label">Vacante Generada Por:</label></strong>
+            <center>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="Baja" id="MotivoBaja" name="Motivo"
+                    onClick="FuncionDisable()">
+                <label class="form-check-label" for="MotivoBaja">
+                    Baja
+                </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="Incapacidad" id="MotivoIncapacidad" name="Motivo"
+                    onClick="FuncionDisable()">
+                <label class="form-check-label" for="MotivoIncapacidad">
+                    Incapacidad
+                </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="Licencia o Permiso" id="MotivoPermiso" name="Motivo"
+                    onClick="FuncionDisable()">
+                <label class="form-check-label" for="MotivoPermiso">
+                    Licencia o Permiso
+                </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="Nueva Creación" id="MotivoNuevaCreacion"
+                    name="Motivo" onClick="FuncionDisable()">
+                <label class="form-check-label" for="MotivoNuevaCreacion">
+                    Nueva Creación
+                </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="Defunción" id="MotivoDefunsion" name="Motivo"
+                    onClick="FuncionDisable()">
+                <label class="form-check-label" for="MotivoDefunsion">
+                    Defunción
+                </label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="MotivoOtro" name="Motivo" onClick="FuncionEnable()">
+                <label class="form-check-label" for="MotivoOtro">
+                    Otro:
+                </label>
+
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="text" class="form-control" id="MotivoOtroInput" name="MotivoOtroInput" disabled>
+            </div>
+            </center>
+        </div>
+
+        <script>
+            function FuncionEnable() {
+                var Checar = document.getElementById('MotivoOtro').checked;
+
+                if (Checar) {
+                    document.getElementById('MotivoOtroInput').disabled = false;
+                }
+            }
+            function FuncionDisable() {
+                var Checar2 = document.getElementById('MotivoBaja').checked;
+                var Checar3 = document.getElementById('MotivoIncapacidad').checked;
+                var Checar4 = document.getElementById('MotivoPermiso').checked;
+                var Checar5 = document.getElementById('MotivoNuevaCreacion').checked;
+                var Checar6 = document.getElementById('MotivoDefunsion').checked;
+
+                if (Checar2 || Checar3 || Checar4 || Checar5 || Checar6) {
+                    document.getElementById('MotivoOtroInput').disabled = true;
+                    document.getElementById('MotivoOtroInput').value = "";
+                }
+            }
+        </script>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+
+</body>

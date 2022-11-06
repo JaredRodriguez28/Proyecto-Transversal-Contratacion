@@ -1,0 +1,176 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Requisiciones Autorizadas</title>
+    <link rel="stylesheet" href="/static/css/cssRequisicionesAutorizadas.css">
+</head>
+
+<body>
+    <br>
+    <center>
+        <h1>Requisiciones Autorizadas</h1>
+    </center>
+
+    <table class="table table-responsive table-success table-bordered border-dark text-center">
+        <thead class="table-dark">
+            <tr class="table-bordered border-dark">
+                <th scope="col" width="25%">Folio</th>
+                <th scope="col" width="50%">Nombre del Puesto</th>
+                <th scope="col" width="25%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in RequisicionDato %}
+            <tr>
+                <th scope="col">{{ i.1 }}</th>
+                <th scope="col">{{ i.2 }}</th>
+                <th><a href="/Detalles_RequisicionAutorizadas/{{i.0}}" class="text-decoration-none">Detalles</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <form class="row g-3 mb-3" method="GET">
+        <br>
+        <center>
+            <h2>Detalles Requisicion:</h2>
+        </center>
+        <div class="col-md-3">
+            <label class="form-label">Folio:
+                <input type="text" class="form-control" value="{{RequisicionDatos.1}}" id="Folio" name="Folio" readonly>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Area que Solicita:
+                <input type="text" class="form-control" value="{{AreaDatos.1}}" name="idArea" id="idArea" readonly>
+            </label>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Fecha de Elaboracion:
+                <input type="text" class="form-control" value="{{RequisicionDatos.3}}" id="FechaElaboracion"
+                    name="FechaElaboracion" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Puesto a Cubrir:
+                <input type="text" class="form-control" value="{{PuestoDatos.2}}" name="idPuesto" id="idPuesto"
+                    readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Nombre Y Puesto de Quien lo Solicita:
+                <input type="text" class="form-control" value="{{RequisicionDatos.7}}" id="Solicitante"
+                    name="Solicitante" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Fecha de Reclutamiento:
+                <input type="input" class="form-control" value="{{RequisicionDatos.3}}" id="FechaReclutamiento"
+                    name="FechaReclutamiento" readonly </label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Fecha de Inicio Vacante:
+                <input type="input" class="form-control" value="{{RequisicionDatos.4}}" id="FechaInicioVacante"
+                    name="FechaInicioVacante" readonly>
+            </label>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Tipo de Vacante:
+                <input type="text" class="form-control" value="{{RequisicionDatos.6}}" name="TipoVacante"
+                    id="TipoVacante" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <strong><label class="form-label">Vacante generada por:</label></strong>
+            {% if RequisicionDatos.5 %}
+            <div class="form-check form-check-inline form-switch">
+                <input class="form-check-input" type="radio" id="MotivoVacante" name="MotivoVacante" checked disabled>
+                <label class="form-check-label" for="MotivoVacante">
+                    {{RequisicionDatos.5}}
+                </label>
+            </div>
+            {% endif %}
+        </div>
+
+        <br><br>
+        <center>
+            <h2>Detalles Puesto:</h2>
+        </center>
+
+        <div class="col-md-12">
+            <label class="form-label">Área del Puesto Vacante:
+                <input type="text" class="form-control" name="idArea" id="idArea" value="{{AreaDatos.1}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Puesto del Jefe Superior:
+                <input type="text" class="form-control" id="PuestoJefeSuperior" name="PuestoJefeSuperior"
+                    value="{{PuestoDatos.4}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-8">
+            <label class="form-label">Jornada:
+                <input type="text" class="form-control" id="Jornada" name="Jornada" value="{{PuestoDatos.5}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Renumeracion Mensual:
+                <input type="text" class="form-control" id="RenumeracionMensual" name="RenumeracionMensual"
+                    value="{{PuestoDatos.6}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Prestaciones">Prestaciones:</label>
+            <textarea rows="10" class="form-control" name="Prestaciones" id="Prestaciones"
+                readonly>{{PuestoDatos.7}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="DescripcionGeneral">Descripción General:</label>
+            <textarea rows="15" class="form-control" name="DescripcionGeneral" id="DescripcionGeneral"
+                readonly>{{PuestoDatos.8}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Funciones">Funciones:</label>
+            <textarea rows="15" class="form-control" name="Funciones" id="Funciones"
+                readonly>{{PuestoDatos.9}}</textarea>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label" for="Edad">Edad:</label>
+            <input type="text" class="form-control" id="Edad" name="Edad" value="{{PuestoDatos.10}}" readonly>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label" for="Sexo">Sexo:</label>
+            <input type="text" class="form-control" name="Sexo" id="Sexo" value="{{PuestoDatos.11}}" readonly>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label" for="idEstadoCivil">Estado Civil:</label>
+            <input type="text" class="form-control" name="idEstadoCivil" id="idEstadoCivil"
+                value="{{EstadoCivilDatos.1}}" readonly>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label" for="idEscolaridad">Escolaridad:</label>
+            <input type="text" class="form-control" name="idEscolaridad" id="idEscolaridad"
+                value="{{EscolaridadDatos.1}}" readonly>
+        </div>
+    </form>
+    {% endblock %}
+
+</body>

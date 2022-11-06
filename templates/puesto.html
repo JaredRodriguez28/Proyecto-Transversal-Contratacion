@@ -1,0 +1,197 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Puesto</title>
+    <link rel="stylesheet" href="/static/css/cssPuesto.css">
+</head>
+
+<body>
+    <br>
+    <center>
+        <h1>Puesto</h1>
+    </center>
+    <table class="table table-responsive table-success table-bordered border-light text-center">
+        <thead class="table-dark">
+            <tr class="table-bordered border-light">
+                <th scope="col-8" width="75%">Nombre del Puesto</th>
+                <th colspan="3" scope="col" width="25%"><a href="/Agregar_Puesto" class="text-decoration-none">
+                        <img src="{{url_for('static', filename='imagenes/agregar.png')}}" alt="NUEVO" width="20"
+                            height="20">
+                        Nuevo
+                    </a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in PuestoDatos %}
+            <tr>
+                <th scope="col">{{ i.1 }}</th>
+                <th><a href="/Detalles_Puesto/{{i.0}}" class="text-decoration-none">Detalles</a></th>
+                <th><a href="/Editar_Puesto/{{i.0}}" class="text-decoration-none">Editar</a></th>
+                <th><a href="/Borrar_Puesto/{{i.0}}" class="text-decoration-none">Borrar</a></th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+
+    <form class="row g-3 mb-3" action="/Detalles_Puesto" method="GET">
+        <center>
+            <h1>Detalles Puesto:</h1>
+        </center>
+        <div class="col-md-12">
+            <label class="form-label">Nombre del Puesto:
+                <input type="text" class="form-control" id="NombrePuesto" name="NombrePuesto" value="{{PuestoDato.2}}"
+                    readonly>
+            </label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Código de Puesto:
+                <input type="text" class="form-control" id="CodigoPuesto" name="CodigoPuesto" value="{{PuestoDato.1}}"
+                    readonly>
+            </label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Área de adscripción:
+                <input type="text" class="form-control" name="idArea" id="idArea" value="{{AreaDatos.1}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Puesto del Jefe Superior:
+                <input type="text" class="form-control" id="PuestoJefeSuperior" name="PuestoJefeSuperior"
+                    value="{{PuestoDato.4}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-8">
+            <label class="form-label">Jornada:
+                <input type="text" class="form-control" id="Jornada" name="Jornada" value="{{PuestoDato.5}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Renumeracion Mensual:
+                <input type="text" class="form-control" id="RenumeracionMensual" name="RenumeracionMensual"
+                    value="{{PuestoDato.6}}" readonly>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Prestaciones">Prestaciones:</label>
+            <textarea rows="10" class="form-control" name="Prestaciones" id="Prestaciones" readonly>{{PuestoDato.7}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="DescripcionGeneral">Descripción General:</label>
+            <textarea rows="15" class="form-control" name="DescripcionGeneral" id="DescripcionGeneral" readonly>{{PuestoDato.8}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Funciones">Funciones:</label>
+            <textarea rows="15" class="form-control" name="Funciones" id="Funciones" readonly>{{PuestoDato.9}}</textarea>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label" for="Edad">Edad:</label>
+            <input type="text" class="form-control" id="Edad" name="Edad" value="{{PuestoDato.10}}" readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label" for="Sexo">Sexo:</label>
+            <input type="text" class="form-control" name="Sexo" id="Sexo" value="{{PuestoDato.11}}" readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label" for="idEstadoCivil">Estado Civil:</label>
+            <input type="text" class="form-control" name="idEstadoCivil" id="idEstadoCivil"
+                value="{{EstadoCivilDatos.1}}" readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label" for="idEscolaridad">Escolaridad:</label>
+            <input type="text" class="form-control" name="idEscolaridad" id="idEscolaridad"
+                value="{{EscolaridadDatos.1}}" readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label" for="idGradoAvance">Grado de Avance:</label>
+            <input type="text" class="form-control" name="idGradoAvance" id="idGradoAvance"
+                value="{{GradoAvanceDatos.1}}" readonly>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label" for="idCarrera">Carrera / Especialidad:</label>
+            <input type="text" class="form-control" name="idCarrera" id="idCarrera" value="{{CarreraDatos.1}}" readonly>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Experiencia">Experiencia:</label>
+            <textarea rows="10" class="form-control" name="Experiencia" id="Experiencia" readonly>{{PuestoDato.16}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Conocimientos">Conocimientos:</label>
+            <textarea rows="10" class="form-control" id="Conocimientos" name="Conocimientos" readonly>{{PuestoDato.17}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="ManejoEquipo">Manejo de Equipo:</label>
+            <textarea rows="15" class="form-control" id="ManejoEquipo" name="ManejoEquipo" readonly>{{PuestoDato.18}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="RequisitosFisicos">Requisitos Fisicos:</label>
+            <textarea rows="10" class="form-control" id="RequisitosFisicos" name="RequisitosFisicos" readonly>{{PuestoDato.19}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="RequisitosPsicologicos">Requisitos Psicológicos:</label>
+            <textarea rows="10" class="form-control" id="RequisitosPsicologicos" name="RequisitosPsicologicos"
+                readonly>{{PuestoDato.20}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Responsabilidades">Responsabilidades:</label>
+            <textarea rows="10" class="form-control" id="Responsabilidades" name="Responsabilidades" readonly>{{PuestoDato.21}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="CondicionesTrabajo">Condiciones de Trabajo:</label>
+            <textarea rows="15" class="form-control" id="CondicionesTrabajo" name="CondicionesTrabajo" readonly>{{PuestoDato.22}}</textarea>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Idiomas:</label>
+            <ul>
+                {% for Idioma in IdiomaDatos %}
+                <li class="checkbox">
+                    <label class="form-check-label checkbox" for="Idioma{{Idioma.1}}">
+                        {{Idioma.2}}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Habilidades:</label>
+            <ul>
+                {% for Habilidades in HabilidadesDatos %}
+                <li class="checkbox">
+                    <label class="form-check-label checkbox" for="Habilidad{{Habilidades.1}}">
+                        {{Habilidades.2}}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </form>
+
+    {% endblock %}
+
+</body>

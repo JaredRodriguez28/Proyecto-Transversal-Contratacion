@@ -1,0 +1,280 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Puesto</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregarPuesto.css')}}">
+</head>
+
+<body>
+
+    <br>
+
+    <form class="row g-3 mb-3" action="/EditarP_Puesto/{{PuestoDato.0}}" method="POST">
+        <center>
+            <h1>Editar Puesto</h1>
+        </center>
+        <div class="col-md-12">
+            <label class="form-label">Nombre del Puesto:
+                <input type="text" class="form-control" id="NombrePuesto" name="NombrePuesto" value="{{PuestoDato.2}}" required>
+            </label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Código de Puesto:
+                <input type="text" class="form-control" id="CodigoPuesto" name="CodigoPuesto" value="{{PuestoDato.1}}" required>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Área de adscripción:
+                <select class="form-select" name="idArea" id="idArea" required>
+                    <option selected hidden value="{{AreaDato.0}}">{{AreaDato.1}}</option>
+                    {% for j in AreaDatos %}
+                    <option value="{{j.0}}">{{j.1}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label">Puesto del Jefe Superior:
+                <input type="text" class="form-control" id="PuestoJefeSuperior" name="PuestoJefeSuperior" value="{{PuestoDato.4}}" required>
+            </label>
+        </div>
+
+        <div class="col-md-8">
+            <label class="form-label">Jornada:
+                <input type="text" class="form-control" id="Jornada" name="Jornada" value="{{PuestoDato.5}}" required>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Renumeracion Mensual:
+                <input type="number" class="form-control" id="RenumeracionMensual" name="RenumeracionMensual" value="{{PuestoDato.6}}" required>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Prestaciones">Prestaciones:</label>
+            <textarea name="Prestaciones" id="Prestaciones" rows="10" required>{{PuestoDato.7}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="DescripcionGeneral">Descripción General:</label>
+            <textarea name="DescripcionGeneral" id="DescripcionGeneral" rows="15" required>{{PuestoDato.8}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Funciones">Funciones:</label>
+            <textarea name="Funciones" id="Funciones" rows="15" required>{{PuestoDato.9}}</textarea>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Edad:
+            <input type="text" class="form-control" id="Edad" name="Edad" value="{{PuestoDato.10}}" required>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Sexo:
+                <select class="form-select" name="Sexo" id="Sexo" required>
+                    <option selected hidden>{{PuestoDato.11}}</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Indistinto">Indistinto</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Estado Civil:
+                <select class="form-select" name="idEstadoCivil" id="idEstadoCivil" required>
+                    <option value="{{EstadoCivilDato.0}}" selected>{{EstadoCivilDato.1}}</option>
+                    {% for j in EstadoCivilDatos %}
+                    <option value="{{j.0}}">{{j.1}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Escolaridad:
+                <select class="form-select" name="idEscolaridad" id="idEscolaridad" onchange="FuncionCheckeo()"
+                    required>
+                    <option value="{{EscolaridadDato.0}}" selected hidden disabled>{{EscolaridadDato.1}}</option>
+                    {% for j in EscolaridadDatos %}
+                    <option value="{{j.0}}">{{j.1}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <script>
+                function FuncionCheckeo() {
+                    var Escolaridad = document.getElementById('idEscolaridad').value;
+
+                    console.log(Escolaridad)
+
+                    if (Escolaridad == 1) {
+                        document.getElementById('idGradoAvance').disabled = true;
+                        document.getElementById('idGradoAvance').value=false;
+                        document.getElementById('idCarrera').disabled = true;
+                        document.getElementById('idCarrera').value=false;
+                    }
+
+                    else {
+                        document.getElementById('idGradoAvance').disabled = false;    
+                        document.getElementById('idGradoAvance').value=true;
+                        document.getElementById('idCarrera').disabled = false;
+                        document.getElementById('idCarrera').value=true;
+                    }
+                }
+            </script>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Grado de Avance:
+                <select class="form-select" name="idGradoAvance" id="idGradoAvance" required>
+                    <option value="{{GradoAvanceDato.0}}" selected hidden disabled>{{GradoAvanceDato.1}}</option>
+                    {% for j in GradoAvanceDatos %}
+                        {% if j.0 == 1 %}
+                            <option value="{{j.0}}" disabled hidden>{{j.1}}</option>
+                        {% else %}
+                            <option value="{{j.0}}">{{j.1}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Carrera / Especialidad:
+                <select class="form-select" name="idCarrera" id="idCarrera" required>
+                    <option value="{{CarreraDato.0}}" selected hidden disabled>{{CarreraDato.1}}</option>
+                    {% for j in CarreraDatos %}
+                        {% if j.0 == 1 %}
+                        <option value="{{j.0}}" disabled hidden>{{j.1}}</option>
+                        {% else %}
+                        <option value="{{j.0}}">{{j.1}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Experiencia">Experiencia:</label>
+            <textarea id="Experiencia" name="Experiencia" rows="10" required>{{PuestoDato.16}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Conocimientos">Conocimientos:</label>
+            <textarea id="Conocimientos" name="Conocimientos" rows="10" required>{{PuestoDato.17}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="ManejoEquipo">Manejo de Equipo:</label>
+            <textarea id="ManejoEquipo" name="ManejoEquipo" rows="15" required>{{PuestoDato.18}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="RequisitosFisicos">Requisitos Fisicos:</label>
+            <textarea name="RequisitosFisicos" id="RequisitosFisicos" rows="10" required>{{PuestoDato.19}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="RequisitosPsicologicos">Requisitos Psicológicos:</label>
+            <textarea name="RequisitosPsicologicos" id="RequisitosPsicologicos" rows="10" required>{{PuestoDato.20}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="Responsabilidades">Responsabilidades:</label>
+            <textarea name="Responsabilidades" id="Responsabilidades" rows="10" required>{{PuestoDato.21}}</textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label class="form-label" for="CondicionesTrabajo">Condiciones de Trabajo:</label>
+            <textarea name="CondicionesTrabajo" id="CondicionesTrabajo" rows="15" required>{{PuestoDato.22}}</textarea>
+        </div>
+       
+        <div class="col-md-6">
+            <label class="form-label">Idiomas:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" name="Idioma1" id="Idioma1" onChange="FuncionCheckeo2()">
+                <label class="form-check-label" for="Idioma1">
+                    No Requerido
+                </label>
+            </div>
+            {% for Idioma in IdiomaDato 
+            if (Idioma.0) > 1 %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="Idioma{{Idioma.0}}"  
+                    name="Idioma{{Idioma.0}}">
+                <label class="form-check-label" for="Idioma{{Idioma.0}}">
+                    {{Idioma.1}}
+                </label>
+            </div>
+            {% endfor %}
+            
+            <script>
+                function FuncionCheckeo2() {
+                    {% for Idioma in IdiomaDato %}
+                    var Checar = document.getElementById('Idioma1').checked;
+
+                    if ({{Idioma.0}} > 1 && Checar) {
+                    document.getElementById('Idioma{{Idioma.0}}').disabled = true;
+                    document.getElementById('Idioma{{Idioma.0}}').checked = false;
+                    } 
+                    else {
+                    document.getElementById('Idioma{{Idioma.0}}').disabled = false;
+                    }
+                    {% endfor %}
+                }
+            </script>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Habilidades:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="Habilidad1" name="Habilidad1"
+                    onChange="FuncionCheckeo3()">
+                <label class="form-check-label checkbox" for="Habilidad1">
+                    No Requeridas
+                </label>
+            </div>
+            {%
+            for Habilidades in HabilidadesDato
+            if (Habilidades.0)>1:
+            %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" id="Habilidad{{Habilidades.0}}"
+                    name="Habilidad{{Habilidades.0}}">
+                <label class="form-check-label checkbox" for="Habilidad{{Habilidades.0}}">
+                    {{Habilidades.1}}
+                </label>
+            </div>
+            {% endfor %}
+            <script>
+                function FuncionCheckeo3() {
+                    {% for Habilidades in HabilidadesDato %}
+                    var Checar = document.getElementById('Habilidad1').checked;
+
+                    if ({{Habilidades.0 }} > 1 && Checar) {
+                    document.getElementById('Habilidad{{Habilidades.0}}').disabled = true;
+                    document.getElementById('Habilidad{{Habilidades.0}}').checked = false;
+                    } 
+
+                    else {
+                    document.getElementById('Habilidad{{Habilidades.0}}').disabled = false;
+                    }
+                    {% endfor %} 
+                }
+            </script>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit">Editar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

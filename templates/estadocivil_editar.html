@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Estado Civil</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Editar Estado Civil</h1>
+    </center>
+    <form action="/EditarP_EstadoCivil/{{EstadoCivilDato.0}}" method="POST">
+        <div class="mb-3">
+            <label for="nombreEstadoCivil" class="form-label">Nombre del Estado Civil:</label>
+            <input type="text" class="form-control" id="nombreEstadoCivil" name="nombreEstadoCivil" value="{{EstadoCivilDato.1}}">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Actualizar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Idioma</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/cssAgregar.css')}}">
+</head>
+
+<body>
+
+    <br>
+    <center>
+        <h1>Idioma</h1>
+    </center>
+    <form action="/EditarP_Idioma/{{IdiomaDato.0}}" method="POST">
+        <div class="mb-3">
+            <label for="Idioma" class="form-label">Idioma:</label>
+            <input type="text" class="form-control" id="Idioma" name="Idioma" value="{{IdiomaDato.1}}">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit">Actualizar</button>
+        </div>
+    </form>
+
+    {% endblock %}
+</body>

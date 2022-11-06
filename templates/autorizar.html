@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<head>
+    <title>Autorizacion</title>
+    <link rel="stylesheet" href="/static/css/cssAutorizar.css">
+</head>
+
+<body>
+    <br><br>
+    <form class="row g-3 mb-3" action="/AutorizarP_Requisicion/{{AutorizarDatos.0}}" method="POST">
+        <br>
+        <center>
+            <h1>Autorizacion de Requisicion:</h2>
+        </center>
+        <div class="col-md-3">
+            <label class="form-label">Folio:
+                <input type="text" class="form-control" value="{{AutorizarDatos.1}}" id="Folio" name="Folio" readonly>
+            </label>
+        </div>
+        <div class="col-md-9">
+            <label class="form-label">Puesto a Cubrir:
+                <input type="text" class="form-control" value="{{AutorizarDatos.2}}" name="idPuesto" id="idPuesto" readonly>
+            </label>
+        </div>
+        <div class="col-md-12">
+            <label class="form-label">Revisado Por:
+                <input type="text" class="form-control" id="Revisado" name="Revisado" required>
+            </label>
+        </div>
+        <div class="col-md-12">
+            <label class="form-label">Autorizado Por:
+                <input type="text" class="form-control" id="Autorizado" name="Autorizado" required>
+            </label>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+    {% endblock %}
+
+</body>
